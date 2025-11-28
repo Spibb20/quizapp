@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "../_components/Header";
+import { AppSidebar } from "../_components/app-sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function RootLayout({
   children,
@@ -8,11 +10,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={` antialiased`}>
+    <SidebarProvider>
+      <AppSidebar />
+      <body>
+        <SidebarTrigger />
         <Header></Header>
+
         {children}
       </body>
-    </html>
+    </SidebarProvider>
   );
 }
