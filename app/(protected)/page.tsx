@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useEffect } from "react";
+import { AppSidebar } from "../_components/app-sidebar";
+import { ArticleSummarizer } from "../_components/Generator";
 
 export default function Home() {
   const getEmployees = async () => {
@@ -9,8 +11,13 @@ export default function Home() {
     console.log("DATA");
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     getEmployees();
-  }, []);
-  return <div></div>;
+  }, []);*/
+  return (
+    <div>
+      <AppSidebar></AppSidebar>
+      <ArticleSummarizer></ArticleSummarizer>
+    </div>
+  );
 }
