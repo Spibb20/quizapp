@@ -21,7 +21,6 @@ export function ArticleSummarizer() {
   const handleGenerate = async () => {
     setIsLoading(true);
     try {
-      // Simulate API call to your AI service
       const response = await fetch("/api/summarize-and-quiz", {
         method: "POST",
         body: JSON.stringify({ title, content }),
@@ -38,18 +37,17 @@ export function ArticleSummarizer() {
   };
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="w-[80%] mx-auto p-6">
       <Card className="p-6">
         <h1 className="mb-6">Article Summarizer & Quiz Generator</h1>
 
         <div className=" gap-6">
-          {/* Input Section */}
           <div className="space-y-4">
             <Card className="p-4">
               <h2 className="mb-4">Input Article</h2>
 
               <div className="space-y-4">
-                <div>
+                <div className="space-y-2">
                   <Label htmlFor="title">Article Title</Label>
                   <Input
                     id="title"
@@ -60,7 +58,7 @@ export function ArticleSummarizer() {
                   />
                 </div>
 
-                <div>
+                <div className="space-y-2">
                   <Label htmlFor="content">Article Content</Label>
                   <Textarea
                     id="content"
@@ -90,9 +88,7 @@ export function ArticleSummarizer() {
             </Card>
           </div>
 
-          {/* Output Section */}
-          <div className="space-y-6">
-            {/* Summary Card */}
+          <div className="space-y-6 pt-2">
             <Card className="p-4">
               <h3 className="mb-3">AI Summary</h3>
               <ScrollArea className="h-[200px]">
@@ -106,7 +102,6 @@ export function ArticleSummarizer() {
               </ScrollArea>
             </Card>
 
-            {/* Quiz Card */}
             <Card className="p-4">
               <h3 className="mb-3">Quick Test</h3>
               <ScrollArea className="h-[300px]">
