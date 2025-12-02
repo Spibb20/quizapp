@@ -8,30 +8,62 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model departments {
-  id        Int         @id @default(autoincrement())
-  name      String?     @db.VarChar(50)
-  employees employees[]
+model User {
+  id           String        @id @default(cuid())
+  clerkId      String        @unique
+  email        String        @unique
+  name         String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  articles     Article[]
+  quizAttempts QuizAttempt[]
+  userScores   UserScore[]
 }
 
-model employees {
-  id           Int          @id @default(autoincrement())
-  firstname    String?      @db.VarChar(50)
-  lastname     String?      @db.VarChar(50)
-  age          Int?
-  gender       String?      @db.VarChar(10)
-  departmentid Int?
-  position     String?      @db.VarChar(100)
-  hiredate     DateTime?    @db.Date
-  departments  departments? @relation(fields: [departmentid], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  salaries     salaries[]
+model Article {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  summary   String
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  quizzes   Quiz[]
 }
 
-model salaries {
-  id            Int        @id
-  employeeid    Int?
-  basesalary    Decimal?   @db.Decimal(10, 2)
-  bonus         Decimal?   @db.Decimal(10, 2)
-  effectivefrom DateTime?  @db.Date
-  employees     employees? @relation(fields: [employeeid], references: [id], onDelete: NoAction, onUpdate: NoAction)
+model Quiz {
+  id           String        @id @default(cuid())
+  question     String
+  options      String[]
+  answer       String
+  articleId    String
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  article      Article       @relation(fields: [articleId], references: [id])
+  quizAttempts QuizAttempt[]
+  userScores   UserScore[]
+}
+
+model QuizAttempt {
+  id        String   @id @default(cuid())
+  userId    String
+  quizId    String
+  selected  String
+  isCorrect Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  quiz      Quiz     @relation(fields: [quizId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model UserScore {
+  id        String   @id @default(cuid())
+  userId    String
+  quizId    String
+  score     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  quiz      Quiz     @relation(fields: [quizId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 }

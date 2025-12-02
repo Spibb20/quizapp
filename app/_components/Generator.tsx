@@ -21,7 +21,7 @@ export function ArticleSummarizer() {
   const handleGenerate = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("/api/summarize-and-quiz", {
+      const response = await fetch("/api/generate", {
         method: "POST",
         body: JSON.stringify({ title, content }),
       });
@@ -29,6 +29,7 @@ export function ArticleSummarizer() {
       const data = await response.json();
       setSummary(data.summary);
       setQuizQuestions(data.quiz);
+      console.log(data);
     } catch (error) {
       console.error("Error:", error);
     } finally {
