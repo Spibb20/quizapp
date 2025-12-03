@@ -15,15 +15,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default function ProtectedLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <div>
       <Header></Header>
       {children}
-    </body>
+    </div>
   );
 }

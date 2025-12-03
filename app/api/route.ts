@@ -1,5 +1,5 @@
 import { query } from "@/lib/connectDb";
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export const GET = async () => {

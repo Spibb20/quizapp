@@ -71,7 +71,7 @@ export default function RootLayout({
     >
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center pt-10 `}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           {children}
         </body>
