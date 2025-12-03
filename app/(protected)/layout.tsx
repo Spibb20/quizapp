@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "../_components/Header";
 import { AppSidebar } from "../_components/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { SignedIn } from "@clerk/nextjs";
+import { SignedIn, UserButton, UserAvatar } from "@clerk/nextjs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,8 +22,10 @@ export default function ProtectedLayout({
 }>) {
   return (
     <div>
-      <Header></Header>
-      {children}
+      <SignedIn>
+        <UserButton />
+        {children}
+      </SignedIn>
     </div>
   );
 }
