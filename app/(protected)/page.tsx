@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AppSidebar } from "../_components/app-sidebar";
 import { ArticleSummarizer } from "../_components/Generator";
-import { SignedIn } from "@clerk/nextjs";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 import { POST } from "../api/generate/route";
 
 export default function Home() {

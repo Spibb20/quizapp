@@ -23,7 +23,7 @@ export default function ProtectedLayout({
   return (
     <div>
       <SignedIn>
-        <UserButton />
+        <Header></Header>
         {children}
       </SignedIn>
     </div>
