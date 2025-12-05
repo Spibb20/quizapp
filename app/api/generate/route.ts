@@ -48,6 +48,7 @@ export const POST = async (req: NextRequest) => {
      Summary:`,
     });
     const summary = summaryResponse.text;
+    console.log(summary);
 
     const quizResponse = await ai.models.generateContent({
       model: "gemini-2.5-flash-lite",
@@ -70,6 +71,7 @@ export const POST = async (req: NextRequest) => {
           ...q,
           answer: parseInt(q.answer),
         }));
+        console.log(quizQuestions);
       } else {
         throw new Error("No JSON");
       }
